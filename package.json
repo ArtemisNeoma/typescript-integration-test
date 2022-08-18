@@ -28,6 +28,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/supertest": "^2.0.12",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
@@ -35,6 +36,7 @@
     "joi": "^17.6.0",
     "reflect-metadata": "^0.1.13",
     "sanitize-html": "^2.7.0",
+    "supertest": "^6.2.4",
     "tsconfig-paths": "^4.0.0",
     "tsyringe": "^4.7.0",
     "winston": "^3.7.2"
