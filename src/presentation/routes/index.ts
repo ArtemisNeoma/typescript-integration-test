@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { container } from 'tsyringe';
+import container from '@di/index';
 import UserRouter from './UserRouter';
 
 const router = Router();
