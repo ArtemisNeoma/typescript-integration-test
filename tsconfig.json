@@ -15,7 +15,8 @@
       "@interfaces/*": ["interfaces/*"],
       "@middleware/*": ["middleware/*"],
       "@presentation/*": ["presentation/*"],
-      "@util/*": ["util/*"]
+      "@util/*": ["util/*"],
+      "@services/*": ["services/*"]
     },                                                        
     "resolveJsonModule": true,                                                     
     "outDir": "./src/dist",                                               
