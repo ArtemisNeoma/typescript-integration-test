@@ -6,7 +6,7 @@ import { inject, injectable } from 'tsyringe';
 @injectable()
 export default class UserRouter {
   constructor(
-    @inject('FrameworkRouter') private router: Router,
+    @inject('FrameworkRouter') public router: Router,
     @inject('CreateUserController')
     private createUserController: IEndPointsController,
     @inject('ListUserController')
