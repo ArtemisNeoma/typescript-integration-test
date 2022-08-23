@@ -17,7 +17,7 @@ export default class CreateUserController implements IEndPointsController {
   ): Promise<Response | undefined> {
     try {
       const newUser = await this.service.create(req.body);
-      return res.status(201).json(newUser);
+      return res.status(201).json({ message: newUser });
     } catch (error) {
       next(new StatusError(422, `${error}`));
     }
