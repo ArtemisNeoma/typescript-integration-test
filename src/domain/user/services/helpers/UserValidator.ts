@@ -30,7 +30,7 @@ export default class UserValidator implements IUserValidator {
 
   public async validate(user: IUser, database: IVariableDatabase) {
     if (!(await this._getCep(user.postal_code)))
-      throw Error(`CEP ${user.postal_code} is invalid`);
+      throw Error(`Postal Code ${user.postal_code} is invalid`);
     if (!this._isCpfValid(user.cpf)) throw Error(`CPF ${user.cpf} is invalid`);
     if (!this._checkUnique(user.email, 'email', database))
       throw Error(`Email ${user.email} already exists`);
