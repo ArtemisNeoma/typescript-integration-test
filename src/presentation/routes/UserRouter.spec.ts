@@ -128,6 +128,22 @@ describe('Route /customer', () => {
         `Error: Email ${expectedPost.email} already exists`,
       );
     });
+    it('Should respond with error when user cpf is composed only with one number', async () => {
+      newUser.cpf = '55555555555';
+      spyRepository.create.mockImplementation(() => newUser);
+      const res = await request(app).post('/customer').send(newUser);
+      expect(res).not.toBeUndefined();
+      expect(res.status).toBe(422);
+      expect(res.body.error).toEqual(`Error: CPF ${newUser.cpf} is invalid`);
+    });
+    it('Should respond with error when user cpf is invalid', async () => {
+      newUser.cpf = '55555555551';
+      spyRepository.create.mockImplementation(() => newUser);
+      const res = await request(app).post('/customer').send(newUser);
+      expect(res).not.toBeUndefined();
+      expect(res.status).toBe(422);
+      expect(res.body.error).toEqual(`Error: CPF ${newUser.cpf} is invalid`);
+    });
     it('Should respond with error when user postal code is invalid', async () => {
       spyRepository.create.mockImplementation(() => newUser);
       jest.spyOn(axios, 'get').mockImplementation(() => Promise.reject());
