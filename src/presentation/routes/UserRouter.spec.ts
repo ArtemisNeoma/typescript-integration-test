@@ -60,9 +60,6 @@ beforeEach(() => {
   spyRepository.readAll.mockReset();
   spyRepository.create.mockClear();
   mockDatabase.clear();
-});
-
-beforeEach(() => {
   spyRepository.readAll.mockImplementation(() => {
     return mockDatabase;
   });
