@@ -80,6 +80,7 @@ describe('Route /customer', () => {
       expect(res.status).toBe(200);
       expect(res.body.message).toEqual(expectedDatabase);
     });
+
     it('Should return reading error when readAll fails', async () => {
       spyRepository.readAll.mockImplementationOnce(() => {
         throw new Error('');
@@ -90,6 +91,7 @@ describe('Route /customer', () => {
       expect(res.body.error).toEqual(expectedGetError);
     });
   });
+
   describe('POST /customer', () => {
     it('Should respond with sanitized user json when creating valid user', async () => {
       spyRepository.create.mockImplementation(() => mockUser);
@@ -98,6 +100,7 @@ describe('Route /customer', () => {
       expect(res.status).toBe(201);
       expect(res.body.message).toEqual(expectedUser);
     });
+
     it('Should respond with error when cpf already exists', async () => {
       mockDatabase.set(0, {
         cpf: expectedUser.cpf,
@@ -113,6 +116,7 @@ describe('Route /customer', () => {
         `Error: CPF ${expectedUser.cpf} already exists`,
       );
     });
+
     it('Should respond with error when email already exists', async () => {
       mockDatabase.set(0, {
         email: expectedUser.email,
@@ -128,6 +132,7 @@ describe('Route /customer', () => {
         `Error: Email ${expectedUser.email} already exists`,
       );
     });
+
     it('Should respond with error when user cpf is composed only with one number', async () => {
       mockUser.cpf = '55555555555';
       spyRepository.create.mockImplementation(() => mockUser);
@@ -136,6 +141,7 @@ describe('Route /customer', () => {
       expect(res.status).toBe(422);
       expect(res.body.error).toEqual(`Error: CPF ${mockUser.cpf} is invalid`);
     });
+
     it('Should respond with error when user cpf is invalid', async () => {
       mockUser.cpf = '55555555551';
       spyRepository.create.mockImplementation(() => mockUser);
@@ -144,6 +150,7 @@ describe('Route /customer', () => {
       expect(res.status).toBe(422);
       expect(res.body.error).toEqual(`Error: CPF ${mockUser.cpf} is invalid`);
     });
+
     it('Should respond with error when user postal code is invalid', async () => {
       spyRepository.create.mockImplementation(() => mockUser);
       jest.spyOn(axios, 'get').mockImplementation(() => Promise.reject());
@@ -154,6 +161,7 @@ describe('Route /customer', () => {
         `Error: Postal Code ${expectedUser.postal_code} is invalid`,
       );
     });
+
     it.each(missingCases)(
       'Should respond with error when %p is missing in new user',
       async (firstParam) => {
