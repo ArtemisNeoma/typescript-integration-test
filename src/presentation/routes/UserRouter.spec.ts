@@ -8,6 +8,7 @@ import {
   mCpfInvalidUser,
   mCpfRepeatedUser,
   mEmailRepeatedUser,
+  mockDatabase,
   mockValidUser,
   mPCodeInvalidUser,
 } from './mocks/UserRouter.mock';
@@ -16,11 +17,6 @@ const spyRepository = {
   readAll: jest.spyOn(UserRepository.prototype, 'readAll'),
   create: jest.spyOn(UserRepository.prototype, 'create'),
 };
-
-const mockDatabase = new Map<number, IUser>().set(0, {
-  email: mEmailRepeatedUser.email,
-  cpf: mCpfRepeatedUser.cpf,
-} as IUser);
 
 beforeEach(() => {
   spyRepository.readAll.mockReset();

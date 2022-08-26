@@ -42,3 +42,8 @@ export const mPCodeInvalidUser: IUser = {
   ...mockValidUser,
   postal_code: '01010101',
 };
+
+export const mockDatabase = new Map<number, IUser>().set(0, {
+  email: mEmailRepeatedUser.email,
+  cpf: mCpfRepeatedUser.cpf,
+} as IUser);
