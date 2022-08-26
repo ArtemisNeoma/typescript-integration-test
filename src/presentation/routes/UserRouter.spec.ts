@@ -17,19 +17,6 @@ const spyRepository = {
   create: jest.spyOn(UserRepository.prototype, 'create'),
 };
 
-const expectedGetError = 'Error: Failed to readAll database';
-
-const expectedUser: IUser = {
-  ...mockValidUser,
-  cpf: '12345678909',
-  cellphone: '47991234567',
-  birthdate: '2000-01-01T00:00:00.000Z',
-  postal_code: '89010203',
-};
-
-const expectedListJson = {
-  0: { email: mEmailRepeatedUser.email, cpf: mCpfRepeatedUser.cpf },
-};
 const mockDatabase = new Map<number, IUser>().set(0, {
   email: mEmailRepeatedUser.email,
   cpf: mCpfRepeatedUser.cpf,
@@ -61,6 +48,9 @@ beforeEach(() => {
 describe('Route /customer', () => {
   describe('GET /customer', () => {
     it('Should return all customers when reading works correctly', async () => {
+      const expectedListJson = {
+        0: { email: mEmailRepeatedUser.email, cpf: mCpfRepeatedUser.cpf },
+      };
       spyRepository.readAll.mockImplementation(() => {
         return mockDatabase;
       });
@@ -71,6 +61,7 @@ describe('Route /customer', () => {
     });
 
     it('Should return reading error when readAll fails', async () => {
+      const expectedGetError = 'Error: Failed to readAll database';
       spyRepository.readAll.mockImplementationOnce(() => {
         throw new Error('');
       });
@@ -86,6 +77,13 @@ describe('Route /customer', () => {
       return mockDatabase;
     });
     it('Should respond with sanitized user json when creating valid user', async () => {
+      const expectedUser: IUser = {
+        ...mockValidUser,
+        cpf: '12345678909',
+        cellphone: '47991234567',
+        birthdate: '2000-01-01T00:00:00.000Z',
+        postal_code: '89010203',
+      };
       spyRepository.create.mockImplementation(() => mockValidUser);
       const res = await request(app).post('/customer').send(mockValidUser);
       expect(res).not.toBeUndefined();
