@@ -22,21 +22,6 @@ const mockDatabase = new Map<number, IUser>().set(0, {
   cpf: mCpfRepeatedUser.cpf,
 } as IUser);
 
-const missingCases: (keyof IUser)[] = [
-  'address',
-  'postal_code',
-  'city',
-  'country',
-  'whatsapp',
-  'email_sms',
-  'birthdate',
-  'cellphone',
-  'cpf',
-  'email_confirmation',
-  'email',
-  'full_name',
-];
-
 beforeEach(() => {
   spyRepository.readAll.mockReset();
   spyRepository.create.mockClear();
@@ -90,6 +75,21 @@ describe('Route /customer', () => {
       invalidCpf: '10897799900',
       invalidPostalCode: '01010101',
     };
+
+    const missingCases: (keyof IUser)[] = [
+      'address',
+      'postal_code',
+      'city',
+      'country',
+      'whatsapp',
+      'email_sms',
+      'birthdate',
+      'cellphone',
+      'cpf',
+      'email_confirmation',
+      'email',
+      'full_name',
+    ];
 
     spyRepository.readAll.mockImplementation(() => {
       return mockDatabase;
