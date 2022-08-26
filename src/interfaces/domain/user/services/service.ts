@@ -1,4 +1,4 @@
-import { IUser } from '../user/repository';
+import { IUser } from '../repository';
 
 export interface IDatabaseObject {
   [k: string]: IUser;

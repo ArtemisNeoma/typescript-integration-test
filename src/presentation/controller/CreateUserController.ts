@@ -1,6 +1,6 @@
 import StatusError from '@util/error';
 import { NextFunction, Request, Response } from 'express';
-import { ICreateUserService } from 'interfaces/domain/services/service';
+import { ICreateUserService } from '@interfaces/domain/user/services/service';
 import { IEndPointsController } from 'interfaces/presentation/controller';
 import { inject, injectable } from 'tsyringe';
 

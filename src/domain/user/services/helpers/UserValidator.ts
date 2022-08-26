@@ -1,5 +1,5 @@
 import { IVariableDatabase } from '@interfaces/domain/repository';
-import { IUserValidator } from '@interfaces/domain/services/validation';
+import { IUserValidator } from '@interfaces/domain/user/services/validation';
 import { IUser } from '@interfaces/domain/user/repository';
 import { inject, injectable } from 'tsyringe';
 

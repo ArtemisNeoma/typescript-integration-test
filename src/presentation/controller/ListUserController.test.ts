@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import StatusError from '@util/error';
 import ListUserService from '@domain/user/services/ListUserService';
 import ListUserController from './ListUserController';
-import { IDatabaseObject } from '@interfaces/domain/services/service';
+import { IDatabaseObject } from '@interfaces/domain/user/services/service';
 
 const databaseMock = {} as IDatabaseObject;
 const req = {} as Request;

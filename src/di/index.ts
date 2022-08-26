@@ -6,8 +6,8 @@ import ListUserService from '@domain/user/services/ListUserService';
 import {
   ICreateUserService,
   IListUserService,
-} from '@interfaces/domain/services/service';
-import { IUserValidator } from '@interfaces/domain/services/validation';
+} from '@interfaces/domain/user/services/service';
+import { IUserValidator } from '@interfaces/domain/user/services/validation';
 import { ControllerAdapterType, MiddlewareArray } from '@interfaces/middleware';
 import { IEndPointsController } from '@interfaces/presentation/controller';
 import controllerAdapter from '@middleware/controllerAdapter';
