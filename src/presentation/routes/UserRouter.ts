@@ -14,16 +14,15 @@ export default class UserRouter {
     @inject('CreateUserMiddlewares') private createMiddlewares: MiddlewareArray,
     @inject('ControllerAdapter')
     private controllerAdapter: ControllerAdapterType,
-  ) {
-    this._routes();
-  }
+  ) {}
 
-  protected _routes(): void {
+  protected setup(): Router {
     this.router.post(
       '/',
       this.createMiddlewares,
       this.controllerAdapter(this.createUserController),
     );
     this.router.get('/', this.controllerAdapter(this.listUserController));
+    return this.router;
   }
 }
