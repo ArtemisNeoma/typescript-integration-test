@@ -6,7 +6,7 @@ import { inject, injectable } from 'tsyringe';
 @injectable()
 export default class UserRouter {
   constructor(
-    @inject('FrameworkRouter') public router: Router,
+    @inject('FrameworkRouter') private router: Router,
     @inject('CreateUserController')
     private createUserController: IEndPointsController,
     @inject('ListUserController')
@@ -16,7 +16,7 @@ export default class UserRouter {
     private controllerAdapter: ControllerAdapterType,
   ) {}
 
-  protected setup(): Router {
+  public setup(): Router {
     this.router.post(
       '/',
       this.createMiddlewares,
