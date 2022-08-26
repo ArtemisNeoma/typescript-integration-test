@@ -15,8 +15,7 @@ export default class ListUserService implements IListUserService {
   public readAll(): IDatabaseObject {
     try {
       const allUsers = this.repository.readAll();
-      const usersJSON = Object.fromEntries(allUsers);
-      return usersJSON;
+      return Object.fromEntries(allUsers);
     } catch (err) {
       throw this.readingError;
     }
