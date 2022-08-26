@@ -1,5 +1,6 @@
 import container from '@di/index';
-import { IUser, IVariableDatabase } from '@interfaces/domain/repository';
+import { IVariableDatabase } from '@interfaces/domain/repository';
+import { IUser } from '@interfaces/domain/user/repository';
 import UserRepository from '../repository/UserRepository';
 import ListUserService from './ListUserService';
 

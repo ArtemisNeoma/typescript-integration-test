@@ -1,8 +1,8 @@
+import { IRepositoryUser } from '@interfaces/domain/user/repository';
 import {
   IDatabaseObject,
   IListUserService,
 } from 'interfaces/domain/services/service';
-import { IRepositoryUser } from 'interfaces/domain/repository';
 import { inject, injectable } from 'tsyringe';
 @injectable()
 export default class ListUserService implements IListUserService {

@@ -1,5 +1,5 @@
 import container from '@di/index';
-import { IUser } from '@interfaces/domain/repository';
+import { IUser } from '@interfaces/domain/user/repository';
 import UserRepository from './UserRepository';
 
 const userRepository = container.resolve(UserRepository);

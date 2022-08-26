@@ -1,9 +1,9 @@
 import container from '@di/index';
 import { NextFunction, Request, Response } from 'express';
-import { IUser } from '@interfaces/domain/repository';
 import CreateUserController from './CreateUserController';
 import CreateUserService from '@domain/user/services/CreateUserService';
 import StatusError from '@util/error';
+import { IUser } from '@interfaces/domain/user/repository';
 
 const userMock: IUser = {} as IUser;
 const req = {} as Request;

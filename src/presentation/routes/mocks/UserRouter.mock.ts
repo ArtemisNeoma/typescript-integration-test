@@ -1,4 +1,4 @@
-import { IUser } from '@interfaces/domain/repository';
+import { IUser } from '@interfaces/domain/user/repository';
 
 export const mockValidUser: IUser = {
   full_name: 'Teste do Teste',

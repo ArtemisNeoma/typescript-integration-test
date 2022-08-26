@@ -1,6 +1,6 @@
+import { IUser } from '@interfaces/domain/user/repository';
 import {
   IEndPointsRepository,
-  IUser,
   IVariableDatabase,
 } from 'interfaces/domain/repository';
 

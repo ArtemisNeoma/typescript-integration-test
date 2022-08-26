@@ -1,6 +1,6 @@
 import UserValidator from './UserValidator';
 import container from '@di/index';
-import { IUser } from '@interfaces/domain/repository';
+import { IUser } from '@interfaces/domain/user/repository';
 
 const userValidator = container.resolve(UserValidator);
 const mockMethods = {

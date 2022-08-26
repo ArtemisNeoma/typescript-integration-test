@@ -1,5 +1,4 @@
-import { ValidationError } from 'joi';
-import { IEndPointsRepository, IUser } from '../repository';
+import { IUser } from '../user/repository';
 
 export interface IDatabaseObject {
   [k: string]: IUser;

@@ -1,9 +1,6 @@
 import AbstractRepository from '@domain/AbstractRepository';
-import {
-  IRepositoryUser,
-  IUser,
-  IVariableDatabase,
-} from 'interfaces/domain/repository';
+import { IRepositoryUser, IUser } from '@interfaces/domain/user/repository';
+import { IVariableDatabase } from 'interfaces/domain/repository';
 import { injectable } from 'tsyringe';
 
 @injectable()

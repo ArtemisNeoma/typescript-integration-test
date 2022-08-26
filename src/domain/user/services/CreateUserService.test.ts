@@ -1,5 +1,5 @@
 import container from '@di/index';
-import { IUser } from '@interfaces/domain/repository';
+import { IUser } from '@interfaces/domain/user/repository';
 import UserRepository from '../repository/UserRepository';
 import CreateUserService from './CreateUserService';
 import UserValidator from './helpers/UserValidator';

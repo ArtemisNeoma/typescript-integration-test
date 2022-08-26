@@ -1,4 +1,5 @@
-import { IUser, IVariableDatabase } from '@interfaces/domain/repository';
+import { IVariableDatabase } from '@interfaces/domain/repository';
+import { IUser } from '@interfaces/domain/user/repository';
 
 export const checkUnique = (
   field: string,

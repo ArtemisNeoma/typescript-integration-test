@@ -5,8 +5,8 @@ import {
   numberStringValidation,
   stringValidation,
 } from '@util/validation/baseValidators';
-import { IUser } from '@interfaces/domain/repository';
 import { ISchema } from '@interfaces/middleware';
+import { IUser } from '@interfaces/domain/user/repository';
 
 const { object } = Joi.types();
 

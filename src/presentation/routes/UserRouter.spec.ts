@@ -1,7 +1,6 @@
 import request from 'supertest';
 import app from '../../index';
 import UserRepository from '@domain/user/repository/UserRepository';
-import { IUser } from '@interfaces/domain/repository';
 import axios from 'axios';
 import {
   mCpfEqualUser,
@@ -12,6 +11,7 @@ import {
   mockValidUser,
   mPCodeInvalidUser,
 } from './mocks/UserRouter.mock';
+import { IUser } from '@interfaces/domain/user/repository';
 
 const spyRepository = {
   readAll: jest.spyOn(UserRepository.prototype, 'readAll'),
