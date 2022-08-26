@@ -157,7 +157,7 @@ describe('Route /customer', () => {
           .spyOn(UserRepository.prototype, 'create')
           .mockImplementation(() => mockValidUser);
         (mockValidUser[firstParam] as unknown) = undefined;
-        const res = await request(app).post('/customer').send();
+        const res = await request(app).post('/customer').send(mockValidUser);
         expect(res).not.toBeUndefined();
         expect(res.status).toBe(422);
       },
