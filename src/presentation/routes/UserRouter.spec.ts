@@ -47,48 +47,60 @@ beforeEach(() => {
 
 describe('Route /customer', () => {
   describe('GET /customer', () => {
-    it('Should return all customers when reading works correctly', async () => {
-      const expectedListJson = {
+    const expectedResults: Record<string, object | string> = {
+      listJson: {
         0: { email: mEmailRepeatedUser.email, cpf: mCpfRepeatedUser.cpf },
-      };
+      },
+      getError: 'Error: Failed to readAll database',
+    };
+
+    it('Should return all customers when reading works correctly', async () => {
       spyRepository.readAll.mockImplementation(() => {
         return mockDatabase;
       });
       const res = await request(app).get('/customer');
       expect(res).not.toBeUndefined();
       expect(res.status).toBe(200);
-      expect(res.body.message).toEqual(expectedListJson);
+      expect(res.body.message).toEqual(expectedResults.listJson);
     });
 
     it('Should return reading error when readAll fails', async () => {
-      const expectedGetError = 'Error: Failed to readAll database';
       spyRepository.readAll.mockImplementationOnce(() => {
         throw new Error('');
       });
       const res = await request(app).get('/customer');
       expect(res).not.toBeUndefined();
       expect(res.status).toBe(500);
-      expect(res.body.error).toEqual(expectedGetError);
+      expect(res.body.error).toEqual(expectedResults.getError);
     });
   });
 
   describe('POST /customer', () => {
-    spyRepository.readAll.mockImplementation(() => {
-      return mockDatabase;
-    });
-    it('Should respond with sanitized user json when creating valid user', async () => {
-      const expectedUser: IUser = {
+    const expectedResults: Record<string, IUser | string> = {
+      newUser: {
         ...mockValidUser,
         cpf: '12345678909',
         cellphone: '47991234567',
         birthdate: '2000-01-01T00:00:00.000Z',
         postal_code: '89010203',
-      };
+      },
+      repeatedCpf: '19087282052',
+      repeatedEmail: 'repeated@repeated.com',
+      equalCpf: '11111111111',
+      invalidCpf: '10897799900',
+      invalidPostalCode: '01010101',
+    };
+
+    spyRepository.readAll.mockImplementation(() => {
+      return mockDatabase;
+    });
+
+    it('Should respond with sanitized user json when creating valid user', async () => {
       spyRepository.create.mockImplementation(() => mockValidUser);
       const res = await request(app).post('/customer').send(mockValidUser);
       expect(res).not.toBeUndefined();
       expect(res.status).toBe(201);
-      expect(res.body.message).toEqual(expectedUser);
+      expect(res.body.message).toEqual(expectedResults.newUser);
     });
 
     it('Should respond with error when cpf already exists', async () => {
@@ -97,7 +109,7 @@ describe('Route /customer', () => {
       expect(res).not.toBeUndefined();
       expect(res.status).toBe(422);
       expect(res.body.error).toEqual(
-        `Error: CPF ${mCpfRepeatedUser.cpf} already exists`,
+        `Error: CPF ${expectedResults.repeatedCpf} already exists`,
       );
     });
 
@@ -107,7 +119,7 @@ describe('Route /customer', () => {
       expect(res).not.toBeUndefined();
       expect(res.status).toBe(422);
       expect(res.body.error).toEqual(
-        `Error: Email ${mEmailRepeatedUser.email} already exists`,
+        `Error: Email ${expectedResults.repeatedEmail} already exists`,
       );
     });
 
@@ -117,7 +129,7 @@ describe('Route /customer', () => {
       expect(res).not.toBeUndefined();
       expect(res.status).toBe(422);
       expect(res.body.error).toEqual(
-        `Error: CPF ${mCpfEqualUser.cpf} is invalid`,
+        `Error: CPF ${expectedResults.equalCpf} is invalid`,
       );
     });
 
@@ -127,7 +139,7 @@ describe('Route /customer', () => {
       expect(res).not.toBeUndefined();
       expect(res.status).toBe(422);
       expect(res.body.error).toEqual(
-        `Error: CPF ${mCpfInvalidUser.cpf} is invalid`,
+        `Error: CPF ${expectedResults.invalidCpf} is invalid`,
       );
     });
 
@@ -138,7 +150,7 @@ describe('Route /customer', () => {
       expect(res).not.toBeUndefined();
       expect(res.status).toBe(422);
       expect(res.body.error).toEqual(
-        `Error: Postal Code ${mPCodeInvalidUser.postal_code} is invalid`,
+        `Error: Postal Code ${expectedResults.invalidPostalCode} is invalid`,
       );
     });
 
