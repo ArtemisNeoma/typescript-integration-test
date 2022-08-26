@@ -4,5 +4,5 @@ import UserRouter from './UserRouter';
 
 const router = Router();
 const userRouter = container.resolve(UserRouter);
-router.use('/customer', userRouter.router);
+router.use('/customer', userRouter.setup());
 export default router;
